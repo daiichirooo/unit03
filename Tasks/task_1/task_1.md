@@ -97,4 +97,4 @@ Screen:
 
 ### Screenshot of result
 
-!{}(result.png)
+![](result.png)
