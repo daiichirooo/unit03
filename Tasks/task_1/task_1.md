@@ -96,6 +96,8 @@ Screen:
                     pos_hint:{"center_x":.5,"center_y":0}
 ```
 
-### Screenshot of result
-
+## Screenshot of result
+### Success case
 ![](result1.png)
+### Failure case
+![](result2.png)
