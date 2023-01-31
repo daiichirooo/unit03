@@ -10,15 +10,16 @@ class task_1(MDApp):
 
     def usdjpycvt(self, choice:str):
         number = self.root.ids.my_price.text
+        number = number.replace(' ', '')
         if number.isdigit():
             if 'USD' in choice:
-                self.count = round(int(number) * 0.7616)
+                self.count = round(int(number) * 0.7616, 2)
                 self.root.ids.result.text = f"{self.count} USD"
             elif 'JPY' in choice:
-                self.count = round(int(number) * 99.2754)
+                self.count = round(int(number) * 99.2754, 2)
                 self.root.ids.result.text = f"{self.count} JPY"
-            else:
-                self.root.ids.result.text = "Please input an integer"
+        else:
+            self.root.ids.result.text = "Please input an integer"
 
 
 test = task_1()
@@ -32,7 +33,7 @@ Screen:
 
     MDBoxLayout:
         orientation: "vertical"
-        size_hint: 0.6, 0.5
+        size_hint: 0.6, 0.8
         pos_hint: {"center_x":0.5, "center_y":0.55}
 
         MDLabel:
@@ -53,7 +54,7 @@ Screen:
 
         MDBoxLayout:
             orientation: "horizontal"
-            size_hint: 1, 0.6
+            size_hint: 1, 0.9
             pos_hint: {"center_x":0.5, "center_y":0.1}
 
             MDLabel:
@@ -77,24 +78,24 @@ Screen:
                         md_bg_color: "#003049"
                         text_color: "#FFFFFF"
                         on_press: app.usdjpycvt("USD")
+                        pos_hint:{"center_x":.6,"center_y":.5}
 
                     MDChip:
                         text: "JPY"
                         md_bg_color: "#D62828"
                         text_color: "#FFFFFF"
                         on_press: app.usdjpycvt("JPY")
+                        pos_hint:{"center_x":.3,"center_y":.5}
 
-        MDBoxLayout:
-            orientation: "vertical"
-            size_hint: 1, 1
-            pos_hint: {"center_x":1, "center_y":0.1}
 
-            MDLabel:
-                id: result
-                font_size:"30pt"
-                pos_hint: {'center_x': 0.75, 'center_y': 0.3}
+                MDLabel:
+                    id: result
+                    font_size: 50
+                    size_hint: 1, .8
+                    halign: "center"
+                    pos_hint:{"center_x":.5,"center_y":0}
 ```
 
 ### Screenshot of result
 
-![](result.png)
+![](result1.png)
