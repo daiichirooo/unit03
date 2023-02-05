@@ -73,5 +73,5 @@ for i in Japan.cities:
 plt.show()
 ```
 
-## result
+## Result
 ![](38.png)
