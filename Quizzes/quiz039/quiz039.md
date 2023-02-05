@@ -56,4 +56,4 @@ Screen:
 ## Result
 ![](39a.png)
 ![](39b.png)
-![](39b.png)
+![](39c.png)
