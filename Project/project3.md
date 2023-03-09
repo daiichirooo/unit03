@@ -31,8 +31,10 @@ I will design a Python application that runs on the KivyMD GUI framework and sto
 ![Fig.1 System diagram of the LISTMATE](system_diagram.png)
 
 ## Data Storage
-![Fig.1 diagram the shows the structure of database of LISTMATE](data_storage.png)
+![Fig.2 diagram the shows the structure of database of LISTMATE](data_storage.png)
 
+## UML Diagram
+![Fig.2 UML diagram of LISTMATE. This diagram depicts the classes of the application.](url_diagram.png)
 
 
 
