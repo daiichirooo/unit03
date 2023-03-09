@@ -83,11 +83,16 @@ Fig.4 Wireframe of the LISTMATE.
 
 
 ## Flow Diagrams
+**Password Verification System**
 ![](fd1.png)
 Fig.5 Flow diagram of a Password verification system.
 
+**Delete Function**
 ![](fd2.png)
 Fig.6 Flow diagram of Delete function.
 
+**Add Function**
 ![](fd3.png)
 Fig.7 Flow diagram of Add function.
+
+
