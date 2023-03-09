@@ -90,4 +90,4 @@ Fig.5 Flow diagram of a Password verification system.
 Fig.6 Flow diagram of Delete function.
 
 ![](fd3.png)
-Fig.7 Flow diagram of .
+Fig.7 Flow diagram of Add function.
