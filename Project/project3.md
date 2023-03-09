@@ -29,12 +29,19 @@ I will design a Python application that runs on the KivyMD GUI framework and sto
 # Criteria B: Design
 ## System Diagram
 ![Fig.1 System diagram of the LISTMATE](system_diagram.png)
+Fig.1 System diagram of the LISTMATE
 
 ## Data Storage
 ![Fig.2 diagram the shows the structure of database of LISTMATE](data_storage.png)
+Fig.2 diagram the shows the structure of database of LISTMATE
 
 ## UML Diagram
 ![Fig.2 UML diagram of LISTMATE. This diagram depicts the classes of the application.](uml_diagram.png)
+Fig.3 UML diagram of LISTMATE. This diagram depicts the classes of the application.
+
+## Wireframe
+![](wireframe.png)
+Fig.4 Wireframe of the LISTMATE.
 
 
 
