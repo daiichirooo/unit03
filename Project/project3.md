@@ -72,13 +72,8 @@ Fig.4 Wireframe of the LISTMATE.
 | 23      | Creating UML Diagram                                     | To explain about the class and function                                                                                                   | 30 min        | Mar 7                  | B         |
 | 24      | Creating ER Diagram                                      | To explain how the database works                                                                                                    | 30 min        | Mar 7                  | B         |
 | 25      | Creating Flow Diagrams                                   | To explain some codes that I worked on                                                                                                | 30 min        | Mar 7                  | B         |
-| 26      | Completing Development Part of Criteria C                | To have interesting parts of my code documented properly                                                                           | 2 hr          | Mar 3                  | C         |
-| 27      | Coding: Beautifying Graphical User Interface             | To make the interface more user-friendly and easily understandable                                                                 | 2 hr          | Mar 3                  | C         |
-| 28      | Filling Computational Thinking                           | To have the Computational Thinking part of Criteria C of the README file finished                                                  | 1 hr          | Mar 6                  | C         |
-| 29      | Creating Test Plan                                       | To have a test plan created for confirming if the application works to standard                                                    | 1.5 hr        | Mar 7                  | C         |
-| 30      | Consolidating and commenting code                        | To have the code finalized and organized for easy-understanding                                                                    | 1 hr          | Mar 7                  | C         |
-| 31      | Beautifying README file                                  | To have README file consolidated and completed                                                                                     | 20 min        | Mar 7                  | B         |
-| 32      | Finish video for Criteria D                              | Video evidence of all the success criteria functioning and working within the developed application                               | 10 min        | Mar 7                  | D         |
+| 26      | Completing Development Part of Criteria C                | To explain all the codes that I worked on                                                                           | 3 hr          | Mar 8                  | C         |
+| 27     | Finish video for Criteria D                              | To show the result of the application that I made                               | 10 min        | Mar 9                  | D         |
 
 
 
@@ -140,6 +135,8 @@ Fig.7 Flow diagram of Add function.
 
 ### Decomposition
 In computational thinking, decomposition refers to dividing a complex problem or system into parts that are easier to conceptualize, understand, program, and maintain. A key aspect of this project was a scoring system for storing statistics and user performance in a database. This requires multiple steps, so I split the overall action into gathering user and vocabulary information, calling another function in the database handler, and moving the GUI to the next card. This is a snippet of the add points function. 
+
+## Development
 
 
 
