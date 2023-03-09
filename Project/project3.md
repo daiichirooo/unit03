@@ -112,9 +112,9 @@ Fig.7 Flow diagram of Add function.
 | Code Review         | Reviewing Code              | Going through the code and making sure all the codes are working                                                                                                                                                           | If there is an error or any problems, I will fix it.                                                                                                                                                                                                                                                                                                                           |
 
 
-## Criteria C: Development
+# Criteria C: Development
 
-### Exisisting tools
+## Exisisting tools
 
 | Software/Development Tools | Coding Structure Tools       | Libraries  |
 |----------------------------|------------------------------|------------|
@@ -126,7 +126,7 @@ Fig.7 Flow diagram of Add function.
 | ChatGPT                    | If-then-else statements      |            |
 |                            | ORM(Object Relation Mapping) |            |
 
-### List of techniques used
+## List of techniques used
 
 1. Object Oriented Programming(OOP)
 2. Object Relation Mapping(ORM)
@@ -135,6 +135,14 @@ Fig.7 Flow diagram of Add function.
 5. if statements
 6. Hashing (password)
 7. Databases
+
+## Computational Thinking
+
+### Decomposition
+In computational thinking, decomposition refers to dividing a complex problem or system into parts that are easier to conceptualize, understand, program, and maintain. A key aspect of this project was a scoring system for storing statistics and user performance in a database. This requires multiple steps, so I split the overall action into gathering user and vocabulary information, calling another function in the database handler, and moving the GUI to the next card. This is a snippet of the add points function. 
+
+
+
 
 
 
