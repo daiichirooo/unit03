@@ -98,9 +98,6 @@ Fig.7 Flow diagram of Add function.
 
 
 ## Test Plan ##
-
-## Test Plan
-
 | Type                | Description                 | Process                                                                                                                                                                                                                                                                                      | Anticipated Outcome                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
 |---------------------|-----------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Unit Testing        | User Registration           | 1. Run project3_main.py <br />2. Click the Signup button on the StartScreen <br />3. Input the certain information(username, email, password, Confirm password) in each textfield<br /> 4. Click Register                                                                                         | After clicking the register button, if all text fields are blank, the text fields turn red to inform the user that input is required. If the username already exists, the user is informed of this fact and told that they need to change it to another username. If the email was not formatted correctly, the user is asked to rewrite the email. They are then asked to reconfirm their password and confirmation password if they do not match. When all text fields meet the criteria, the user can proceed to the LoginScreen. |
@@ -113,4 +110,32 @@ Fig.7 Flow diagram of Add function.
 | Unit Testing        | Editing amount Vocabulary      | 1. Run project3_main.py <br />2. Login with the userid and password <br />3. Click "List" button on the HomeScreen <br />4.Click the check button on the list. <br />5.Click the row that you want to change. <br />6.input the texts about the amount of the food. <br />7.and click "Change button" on the bottom bar.                                                       | The application changes the amount of food at the moment the change button is pressed, with the text put in by the user being entered into the row chosen by the user.                                                                                                                                                                                                                                                                                |
 | Integration Testing | Adding + Editing Vocabulary | 1. Run project3_main.py <br />2. Login with the userid and password <br />3. Add a food <br />4. press the "list" button to go to the ListScreen <br />5.Click the button(Fridge1, Fridge2, Room, All)to see each food.<br />6.delete the food. <br />7.change the amount of food. <br />8. Press the button "Home" to go HomeScreen                                                                                                    | If the user uses these functions in a suitable way, they can be used without any errors. By using the application you will be able to view the list, change the contents of the list, delete the contents of the list, etc.                                                                                                                                                                                                                                                                                                    |
 | Code Review         | Reviewing Code              | Going through the code and making sure all the codes are working                                                                                                                                                           | If there is an error or any problems, I will fix it.                                                                                                                                                                                                                                                                                                                           |
+
+
+## Criteria C: Development
+
+### Exisisting tools
+
+| Software/Development Tools | Coding Structure Tools       | Libraries  |
+|----------------------------|------------------------------|------------|
+| PyCharm                    | OOP Structures(Classes)      | Kivymd.app |
+| Python                     | SQL requests                 | Passlib    |
+| KivyMD                     | Databases                    | sqlalchemy |
+| SQLite                     | Encryption                   | kivymd.uix |
+| Github Copilot             | For Loops                    |            |
+| ChatGPT                    | If-then-else statements      |            |
+|                            | ORM(Object Relation Mapping) |            |
+
+### List of techniques used
+
+1. Object Oriented Programming(OOP)
+2. Object Relation Mapping(ORM)
+3. KivyMD Library
+4. For loops
+5. if statements
+6. Hashing (password)
+7. Databases
+
+
+
 
