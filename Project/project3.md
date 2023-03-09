@@ -34,7 +34,7 @@ I will design a Python application that runs on the KivyMD GUI framework and sto
 ![Fig.2 diagram the shows the structure of database of LISTMATE](data_storage.png)
 
 ## UML Diagram
-![Fig.2 UML diagram of LISTMATE. This diagram depicts the classes of the application.](url_diagram.png)
+![Fig.2 UML diagram of LISTMATE. This diagram depicts the classes of the application.](uml_diagram.png)
 
 
 
