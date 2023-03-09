@@ -43,7 +43,7 @@ Fig.3 UML diagram of LISTMATE. This diagram depicts the classes of the applicati
 ![](wireflame1.png)
 Fig.4 Wireframe of the LISTMATE.
 
-## Record of Tsaks
+## Record of Tasks
 
 | Task No | Planned Action                                           | Planned Outcome                                                                                                                    | Time estimate | Target completion date | Criterion |
 |---------|----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|---------------|------------------------|-----------|
@@ -68,19 +68,17 @@ Fig.4 Wireframe of the LISTMATE.
 | 19      | Code the change button                       | make users be able to change the amount of the food when they eat.                                                                                      | 1hr         | Mar 5                  | C         |
 | 20      | Code the validation for Login system                          | To notice the users if there are some mistakes on userid or password                                                      | 1hr        | Mar 5                  | C         |
 | 21      | Code the validation for Signup system                          | To notice the users if there are already same userid on the database and email                                                      | 1hr        | Mar 5                  | C         |
-| 22      | Coding the pop up dialogs                                | To have pop up dialogs implemented to improve user experience                                                                      | 30 min        | Mar 3                  | C         |
-| 23      | Coding Input Validation                                  | To have input validation implemented throughout the application to ensure data inputted is correct                                 | 20 min        | Mar 3                  | C         |
-| 23      | Creating System Diagram                                  | To have system diagram finished                                                                                                    | 30 min        | Mar 3                  | B         |
-| 24      | Creating UML Diagram                                     | To have the UML diagram finished                                                                                                   | 30 min        | Mar 3                  | B         |
-| 25      | Creating ER Diagram                                      | To have the ER diagram finished                                                                                                    | 30 min        | Mar 3                  | B         |
-| 26      | Creating Flow Diagrams                                   | To have the  flow diagrams finished                                                                                                | 30 min        | Mar 3                  | B         |
-| 27      | Completing Development Part of Criteria C                | To have interesting parts of my code documented properly                                                                           | 2 hr          | Mar 3                  | C         |
-| 28      | Coding: Beautifying Graphical User Interface             | To make the interface more user-friendly and easily understandable                                                                 | 2 hr          | Mar 3                  | C         |
-| 29      | Filling Computational Thinking                           | To have the Computational Thinking part of Criteria C of the README file finished                                                  | 1 hr          | Mar 6                  | C         |
-| 30      | Creating Test Plan                                       | To have a test plan created for confirming if the application works to standard                                                    | 1.5 hr        | Mar 7                  | C         |
-| 31      | Consolidating and commenting code                        | To have the code finalized and organized for easy-understanding                                                                    | 1 hr          | Mar 7                  | C         |
-| 32      | Beautifying README file                                  | To have README file consolidated and completed                                                                                     | 20 min        | Mar 7                  | B         |
-| 33      | Finish video for Criteria D                              | Video evidence of all the success criteria functioning and working within the developed application                               | 10 min        | Mar 7                  | D         |
+| 22      | Creating System Diagram                                  | To explain how the system works                                                                                                   | 30 min        | Mar 7                  | B         |
+| 23      | Creating UML Diagram                                     | To explain about the class and function                                                                                                   | 30 min        | Mar 7                  | B         |
+| 24      | Creating ER Diagram                                      | To explain how the database works                                                                                                    | 30 min        | Mar 7                  | B         |
+| 25      | Creating Flow Diagrams                                   | To explain some codes that I worked on                                                                                                | 30 min        | Mar 7                  | B         |
+| 26      | Completing Development Part of Criteria C                | To have interesting parts of my code documented properly                                                                           | 2 hr          | Mar 3                  | C         |
+| 27      | Coding: Beautifying Graphical User Interface             | To make the interface more user-friendly and easily understandable                                                                 | 2 hr          | Mar 3                  | C         |
+| 28      | Filling Computational Thinking                           | To have the Computational Thinking part of Criteria C of the README file finished                                                  | 1 hr          | Mar 6                  | C         |
+| 29      | Creating Test Plan                                       | To have a test plan created for confirming if the application works to standard                                                    | 1.5 hr        | Mar 7                  | C         |
+| 30      | Consolidating and commenting code                        | To have the code finalized and organized for easy-understanding                                                                    | 1 hr          | Mar 7                  | C         |
+| 31      | Beautifying README file                                  | To have README file consolidated and completed                                                                                     | 20 min        | Mar 7                  | B         |
+| 32      | Finish video for Criteria D                              | Video evidence of all the success criteria functioning and working within the developed application                               | 10 min        | Mar 7                  | D         |
 
 
 
