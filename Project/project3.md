@@ -28,6 +28,6 @@ I will design a Python application that runs on the KivyMD GUI framework and sto
 
 # Criteria B: Design
 ## System Diagram
-![](system_daigram.png)
+![](system_diagram.png)
 
 
