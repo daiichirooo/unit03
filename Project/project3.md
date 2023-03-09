@@ -40,7 +40,7 @@ Fig.2 diagram the shows the structure of database of LISTMATE
 Fig.3 UML diagram of LISTMATE. This diagram depicts the classes of the application.
 
 ## Wireframe
-![](wireframe.png)
+![](wireframe1.png)
 Fig.4 Wireframe of the LISTMATE.
 
 
