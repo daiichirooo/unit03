@@ -28,6 +28,13 @@ I will design a Python application that runs on the KivyMD GUI framework and sto
 
 # Criteria B: Design
 ## System Diagram
-![](system_diagram.png)
+![Fig.1 System diagram of the LISTMATE](system_diagram.png)
+
+## Data Storage
+![Fig.1 diagram the shows the structure of database of LISTMATE](data_storage.png)
+
+
+
+
 
 
