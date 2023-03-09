@@ -138,9 +138,140 @@ In computational thinking, decomposition refers to dividing a complex problem or
 
 ## Development
 
+### KyvyMD
+
+#### Screen Manager
+```.kv
+ScreenManager:
+    id:scr_manager
+    StartScreen:
+        name: "StartScreen"
+    LoginScreen:
+        name: "LoginScreen"
+    SignupScreen:
+        name: "SignupScreen"
+    HomeScreen:
+        name: "HomeScreen"
+    AddScreen:
+        name: "AddScreen"
+    ListScreen:
+        name: "ListScreen"
+```
+Clients need the application to record and store the food they have. To meet these expectations, they are going to use KyvyMD's ScreenManager to manage the pages of the interface they develop. The ScreenManager widget serves as the basis for the user interface of the multi-screen application. The ScreenManager is given the ID scr_manager.
+
+The ScreenManager is responsible for managing multiple screens in the UI. In my application, six screens are defined within the ScreenManager, each with a unique name. (StartScreen, LoginScreen, SignupScreen, HomeScreen, Addscreen, ListScreen) Each screen is defined as a custom widget and is specified by its class name.
+
+LoginScreen and SignupScreen are screens for users to authenticate and create new accounts respectively; HomeScreen acts as the main screen of the application and typically allows users to use various services. The AddScreen allows users to add new food information to their account, while the ListScreen displays a list of food items stored by the user.
 
 
+#### MDBoxLayout
+```.kv
+MDBoxLayout:
+        size_hint: .7, .7
+        orientation: "vertical"
+        pos_hint:{"center_x":.5,"center_y":.5}
+```
+MDBoxLayout is a type of layout in the KivyMD library which arranges child widgets either vertically or horizontally. It is a subclass of the BoxLayout in the Kivy framework.
+
+In this code, the MDBoxLayout is created with a size_hint of .7, .7, which means it will take up 70% of the available space in both the horizontal and vertical directions. The orientation is set to "vertical", which means the child widgets will be stacked vertically. Finally, the pos_hint sets the position of the MDBoxLayout at the center of the parent widget.
+
+To use MDBoxLayout, you need to import it from the KivyMD library and add child widgets to it. The child widgets can be added in the kv language or in Python. You can also set the size and position of the child widgets using various properties like size_hint, size, and pos_hint.
+
+#### MDRaisedButton
+```.kv
+MDRaisedButton:
+                id: try_login_button
+                size_hint: .5, 1
+                text: "Login"
+                md_bg_color: "#c56e33"
+                on_press: root.parent.current = "LoginScreen"
+```
+MDRaisedButton is a button widget in the KivyMD library that is designed to have a raised appearance. It inherits from the Button widget in the Kivy framework and adds extra styling to make it look like a raised button.
+
+In this code, the MDRaisedButton is created with an id of try_login_button. The size_hint is set to .5, 1, which means the button will take up half of the available horizontal space and all of the available vertical space. The text property sets the text of the button to "Login". The md_bg_color sets the background color of the button to "#c56e33", which is a shade of brown. Finally, the on_press event sets the current property of the parent widget to "LoginScreen" when the button is pressed.
+
+To use MDRaisedButton, you need to import it from the KivyMD library and create an instance of it in your code. You can then add it to your app's layout like any other widget.
+
+#### Images
+```.kv
+Image:
+            id: logo
+            size_hint: 1, 1
+            source: "logo_clear.png"
+            halign: "center"
+            pos_hint:{"center_x":.5,"center_y":.5}
+```
+In KivyMD, the Image widget is used to display images in your application. It is a subclass of the AsyncImage widget in Kivy and provides additional features such as the ability to scale and align the image.
+
+In the code, an Image widget is created with an id of logo. The size_hint is set to 1, 1, which means the image will take up all available space. The source property sets the path to the image file that will be displayed. The halign property sets the horizontal alignment of the image to the center, and the pos_hint property centers the image in its parent widget.
+
+To use Image in your KivyMD app, you first need to import it from the KivyMD library. Then, you can create an instance of it and set its properties, just like any other widget.
 
 
+#### MDCard
+```.kv
+MDCard:
+        size_hint: 0.5, .9
+        elevation: 2
+        orientation: "vertical"
+        pos_hint: {"center_x": .5, "center_y": .5}
+        padding: dp(50)
+```
+MDCard is a widget in the KivyMD library that provides a Material Design card component. The card is typically used to group related information and actions together in a user interface.
 
+The widget has several properties that can be customized, such as size_hint, which determines the size of the card relative to its parent widget, and pos_hint, which specifies the card's position relative to its parent widget using a dictionary of normalized position values. The elevation property sets the visual depth of the card, with higher values creating a stronger drop shadow effect. The padding property determines the amount of space between the edge of the card and its contents.
 
+The orientation property sets the layout orientation of the card's contents. By default, it is set to "vertical", which means that the contents will be arranged vertically from top to bottom. However, it can also be set to "horizontal" to arrange the contents horizontally from left to right.
+
+To use MDCard in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired. You can then add the card to your app's user interface hierarchy, typically inside a container widget like a BoxLayout or GridLayout.
+
+#### MDlabel
+```.kv
+MDLabel:
+                text: "Place"
+                font_size: 40
+                size_hint: .6, .05
+                pos_hint: {"center_x": .5, "center_y": .5}
+```
+MDLabel is a widget in the KivyMD library that displays text in a user interface. It is similar to the standard Kivy Label widget, but provides additional features and styling options specific to the Material Design language.
+
+The widget has several properties that can be customized, such as text, which sets the label's text content, and font_size, which sets the size of the text. Other properties include size_hint, which determines the size of the label relative to its parent widget, and pos_hint, which specifies the label's position relative to its parent widget using a dictionary of normalized position values.
+
+To use MDLabel in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired. You can then add the label to your app's user interface hierarchy, typically inside a container widget like a BoxLayout or GridLayout.
+
+In this code, text is set to "Place", font_size is set to 40, size_hint is set to .6 for width and .05 for height, and pos_hint is set to center the label horizontally and vertically within its parent widget. These settings are specific to the example code and can be adjusted to suit the needs of your app.
+
+#### MDtextfield
+```.kv
+MDTextField:
+            id: login_userid_input
+            hint_text: "Enter your username or email"
+            icon_left: "email"
+            size_hint: 1, .1
+            helper_text_mode: "on_error"
+            on_text: root.userid_empty()
+            helper_text: ""
+            required: False
+```
+MDTextField is a widget in the KivyMD library that allows users to input text. It is similar to the standard TextInput widget in Kivy, but has additional features and styling options. The widget has several properties that can be customized, such as hint_text, which displays a hint to the user when the field is empty, and icon_left and icon_right, which allow you to add icons to the left or right side of the text field.
+
+Other properties include size_hint, which determines the size of the field relative to its parent widget, and helper_text_mode, which controls when helper text is displayed. on_text is a method that is called whenever the text in the field changes, while helper_text can be used to display additional text alongside the main text field, such as an error message or instructions for the user.
+
+Finally, required is a boolean property that determines whether the field is required to be filled in by the user. To use MDTextField in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired.
+
+#### MDChip
+```.kv
+MDChip:
+                    text: "Room"
+                    icon_left: "bed-outline"
+                    size_hint: .3, .8
+                    on_press: root.on_chip_pressed(self)
+                    on_active: if self.active: root.removes_marks_all_chips(self)
+```
+MDChip is a widget in the KivyMD library that displays information in a compact, clickable format. It is often used to display tags or categories that users can select or interact with. The widget has several properties that can be customized, such as text, which displays the main text of the chip, and icon_left and icon_right, which allow you to add icons to the left or right side of the chip.
+
+Other properties include size_hint, which determines the size of the chip relative to its parent widget, and on_press, which is a method that is called when the chip is clicked. The on_active property can be used to specify a method that is called when the chip's state changes, such as when it is selected or deselected.
+
+In this code, on_chip_pressed and removes_marks_all_chips are methods defined in the parent widget that are called when the chip is pressed or its state changes, respectively. These methods can be used to update the state of the app or perform other actions based on the user's interaction with the chip.
+
+To use MDChip in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired. You can then add the chip to your app's user interface hierarchy, typically inside a container widget like a BoxLayout or GridLayout.
