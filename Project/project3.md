@@ -680,3 +680,10 @@ This code defines a function on_pre_enter which creates an instance of MDDataTab
 This code defines a method called update that updates the data shown in a MDDataTable widget based on a specified location. It first clears the current data in the widget and gets the user_id from the LoginScreen using self.manager.get_screen. It then creates a database connection and runs a query to select all items that belong to the specified user and are located at the specified location. The method then iterates over the results and appends them to the row_data attribute of the MDDataTable widget. If there are no results, it adds a single empty row to the table.
 
 
+# Criteria D: Functionality
+
+## The video that shows my work
+
+## Citations
+
+## Appendix
