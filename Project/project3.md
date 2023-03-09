@@ -683,8 +683,16 @@ This code defines a method called update that updates the data shown in a MDData
 # Criteria D: Functionality
 
 ## The video that shows my work
+https://www.youtube.com/watch?v=ts5A7YZP-0s
+
 
 ## Citations
+Welcome to KIVYMD's documentation!#. KivyMD 1.1.1 documentation. (n.d.). Retrieved March 10, 2023, from https://kivymd.readthedocs.io/en/1.1.1/ 
+Pictogrammers. (n.d.). Retrieved March 10, 2023, from https://pictogrammers.com/ 
+Free logo maker - over 20 million logos made. Free Logo Maker - Over 20 Million Logos Made | LOGO.com. (n.d.). Retrieved March 10, 2023, from https://logo.com/?_gl=1%2Aey299h%2A_ga%2AMTY5MzQwNzk4NC4xNjc3NTYxNDAy%2A_ga_8Y782WJ29W%2AMTY3ODQwMTgwMC40LjEuMTY3ODQwMTgwMi41OC4wLjA. 
+Free logo maker - over 20 million logos made. Free Logo Maker - Over 20 Million Logos Made | LOGO.com. (n.d.). Retrieved March 10, 2023, from https://logo.com/?_gl=1%2Aey299h%2A_ga%2AMTY5MzQwNzk4NC4xNjc3NTYxNDAy%2A_ga_8Y782WJ29W%2AMTY3ODQwMTgwMC40LjEuMTY3ODQwMTgwMi41OC4wLjA. 
+
 
 ## Appendix
+### Client approval of proposed success critereas
 ![](appendix.png)
