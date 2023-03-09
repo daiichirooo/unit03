@@ -312,29 +312,6 @@ The "close" method is used to close the database connection.
 Overall, this code provides a basic interface to interact with an SQLite database and perform operations such as searching, saving, and retrieving data.
 
 
-### database worker
-```.py
-class database_worker:
-    def __init__(self, name):
-        self.connection = sqlite3.connect(name)
-        self.cursor = self.connection.cursor()
-
-    def search(self, query):
-        result = self.cursor.execute(query).fetchall()
-        return result
-
-    def run_save(self, query):
-        self.cursor.execute(query)
-        self.connection.commit()
-        return
-
-    def collect_output(self,query):
-        self.cursor.execute(query)
-        return self.cursor.fetchone()
-
-    def close(self):
-        self.connection.close()
-```
 
 ### login system
 
@@ -442,3 +419,165 @@ Finally, the first element of the "temp" variable is extracted and stored in "te
 Additionally, I also have a validation in the registration methods to make it easier for users to use the application when they want to register to this app.
 
 
+
+### Adding fooditem System
+
+#### Datepicker
+```.py
+    def build(self):
+        self.theme_cls.theme_style = "Dark"
+        self.theme_cls.primary_palette = "Orange"
+
+        return (
+            MDScreen(
+                MDRaisedButton(
+                    text="Open data picker",
+                    pos_hint={'center_x': .5, 'center_y': .5},
+                    on_release=self.show_date_picker,
+                )
+            )
+        )
+
+    def on_save(self, instance, value, date_range):
+        '''
+        Events called when the "OK" dialog box button is clicked.
+
+        :type instance: <kivymd.uix.picker.MDDatePicker object>;
+
+        :param value: selected date;
+        :type value: <class 'datetime.date'>;
+
+        :param date_range: list of 'datetime.date' objects in the selected range;
+        :type date_range: <class 'list'>;
+        '''
+
+        self.selected_date = value
+        self.ids.expiration_date_button.text = str(value)
+
+    def on_cancel(self, instance, value):
+        '''Events called when the "CANCEL" dialog box button is clicked.'''
+
+    def show_date_picker(self, *args):
+        date_dialog = MDDatePicker(primary_color='#c56e33',accent_color="c56e33", selector_color="white",)
+        date_dialog.bind(on_save=self.on_save, on_cancel=self.on_cancel)
+        date_dialog.open()
+```
+This is a KivyMD screen that displays a button that when clicked, opens a date picker dialog box. The date picker allows the user to select a date and returns the selected date. The selected date is then displayed on the button. The build() method sets the theme style and primary color palette, and returns the screen with a button. The on_save() method is called when the user clicks the "OK" button on the date picker dialog box and sets the selected date to the selected_date attribute of the class. The on_cancel() method is called when the user clicks the "CANCEL" button on the date picker dialog box. The show_date_picker() method creates an instance of the MDDatePicker class and opens the date picker dialog box.
+
+#### Chip
+```.py
+    def set_chip_bg_color(self, active_value: int):
+        '''
+        Will be called every time the chip is activated/deactivated.
+        Sets the background color of the chip.
+        '''
+        self.active = bool(active_value)
+        self.md_bg_color = (
+            (0, 0, 0, 0.4)
+            if self.active
+            else (
+                self.theme_cls.bg_darkest
+                if self.theme_cls.theme_style == "Light"
+                else (
+                    self.theme_cls.bg_light
+                    if not self.disabled
+                    else self.theme_cls.disabled_hint_text_color
+                )
+            )
+        )
+        if self.active:
+            self.ids.chip_button.background_color = self.theme_cls.primary_dark
+        else:
+            self.ids.chip_button.background_color = self.theme_cls.bg_light
+
+    def set_chip_text_color(self, instance_chip, active_value: int):
+        print("set_chip_text_color called")
+        Animation(
+            color=(0, 0, 0, 1) if self.active else (0, 0, 0, 0.5), d=0.2
+        ).start(self.ids.label)
+
+    def removes_marks_all_chips(self, selected_instance_chip):
+        for instance_chip in self.ids.chip_box.children:
+            if instance_chip != selected_instance_chip:
+                instance_chip.active = False
+
+    def on_chip_pressed(self, instance_chip):
+        # Set the selected place and remove marks from all other chips
+        self.selected_place = instance_chip.text
+        for child in self.ids.chip_box.children:
+            if child != instance_chip:
+                child.active = False
+
+        # Add a checkmark to the selected chip
+        instance_chip.icon = "check"
+        instance_chip.icon_color = (1, 1, 1, 1)  # white
+
+    def build(self):
+        return Builder.load_string()
+
+    def reset_chips(self):
+        for chip in self.ids.chip_box.children:
+            chip.active = False
+```
+
+I used this code as buttons that we can use when we choose the place where we want to store our food. Three buttons are Fridge 1, Fridge 2, and Room since client has two fridges in his house. This code defines methods for a custom widget that contains multiple chips. The set_chip_bg_color method sets the background color of the chip based on its activation state. The set_chip_text_color method animates the text color of the chip label. The removes_marks_all_chips method unchecks all chips except the selected one. The on_chip_pressed method handles chip selection and adds a checkmark to the selected chip. The reset_chips method unchecks all chips. The build method loads the widget layout.
+
+#### Adding the food
+```.py
+    def add_food(self):
+        items = self.ids.add_fooditems_input.text.strip()
+        amount = self.ids.add_amount_input.text.strip()
+        place = self.selected_place
+
+
+        expiration_date = str(self.selected_date)
+
+        user_id = self.manager.get_screen("LoginScreen").user_id
+
+        db = database_worker("Food_Items.db")
+        add_food = f"INSERT into food_data (user_id, item, amount, place, expiration_date) values ('{user_id}','{items}','{amount}','{place}','{expiration_date}')"
+        db.run_save(add_food)
+        db.close()
+        self.ids.add_fooditems_input.text =  ''
+        self.ids.add_amount_input.text = ''
+        self.ids.expiration_date_button.text = 'Expiration date'
+        self.reset_chips()
+
+        Logger.error("Food is added")
+        dialog = MDDialog(
+            title="Food is ADDED!!",
+            text=" ",
+            size_hint=(0.7, 0.3),
+        )
+        dialog.open()
+```
+
+This code defines a method add_food that gets the input data for a new food item from a KivyMD screen and inserts it into a SQLite database named Food_Items.db. The method first retrieves the values of items, amount, and place input fields, and the selected date from a date picker. It then uses the user_id of the logged-in user to insert the data into the food_data table in the database. After the data has been added, the input fields and the selected date are reset to their default values, and a dialog box is displayed to confirm that the food item has been added successfully. The Logger module is used to log an error message when the food is added.
+
+### List (delete & change) system
+
+#### delete system
+```.py
+    def delete(self):
+        rows_checked = self.rows_checked
+        print(f"haha {rows_checked}")
+        if len(rows_checked) == 1:
+            for r in rows_checked:
+                db = database_worker("Food_Items.db")
+                print(r)
+                self.rows_checked.remove(r)
+                query = f"""delete from food_data where item = "{str(r[0])}" and amount = "{str(r[1])}" and place = "{str(r[2])}" and expiration_date = "{str(r[3])}" """
+                print(query)
+                db.run_save(query)
+                db.close()
+                self.update()
+        else:
+            Logger.error("Please select one item to delete")
+            dialog = MDDialog(
+                title="Warning",
+                text="Please select one item to edit",
+                size_hint=(0.7, 0.3)
+            )
+            dialog.open()
+```
+This code defines a function called delete() that handles the deletion of selected rows from a database. The function first checks if exactly one row is selected, and if so, it retrieves the data from the selected row and constructs a SQL query to delete the corresponding record from the database. The query is then executed and the GUI is updated to reflect the changes. If more than one row is selected, an error message is displayed to the user.
