@@ -136,11 +136,9 @@ Fig.7 Flow diagram of Add function.
 ### Decomposition
 In computational thinking, decomposition refers to dividing a complex problem or system into parts that are easier to conceptualize, understand, program, and maintain. A key aspect of this project was a scoring system for storing statistics and user performance in a database. This requires multiple steps, so I split the overall action into gathering user and vocabulary information, calling another function in the database handler, and moving the GUI to the next card. This is a snippet of the add points function. 
 
-## Development
+## Development with KyvyMD
 
-### KyvyMD
-
-#### Screen Manager
+### Screen Manager
 ```.kv
 ScreenManager:
     id:scr_manager
@@ -164,7 +162,7 @@ The ScreenManager is responsible for managing multiple screens in the UI. In my 
 LoginScreen and SignupScreen are screens for users to authenticate and create new accounts respectively; HomeScreen acts as the main screen of the application and typically allows users to use various services. The AddScreen allows users to add new food information to their account, while the ListScreen displays a list of food items stored by the user.
 
 
-#### MDBoxLayout
+### MDBoxLayout
 ```.kv
 MDBoxLayout:
         size_hint: .7, .7
@@ -177,7 +175,7 @@ In this code, the MDBoxLayout is created with a size_hint of .7, .7, which means
 
 To use MDBoxLayout, you need to import it from the KivyMD library and add child widgets to it. The child widgets can be added in the kv language or in Python. You can also set the size and position of the child widgets using various properties like size_hint, size, and pos_hint.
 
-#### MDRaisedButton
+### MDRaisedButton
 ```.kv
 MDRaisedButton:
                 id: try_login_button
@@ -192,7 +190,7 @@ In this code, the MDRaisedButton is created with an id of try_login_button. The 
 
 To use MDRaisedButton, you need to import it from the KivyMD library and create an instance of it in your code. You can then add it to your app's layout like any other widget.
 
-#### Images
+### Images
 ```.kv
 Image:
             id: logo
@@ -208,7 +206,7 @@ In the code, an Image widget is created with an id of logo. The size_hint is set
 To use Image in your KivyMD app, you first need to import it from the KivyMD library. Then, you can create an instance of it and set its properties, just like any other widget.
 
 
-#### MDCard
+### MDCard
 ```.kv
 MDCard:
         size_hint: 0.5, .9
@@ -225,7 +223,7 @@ The orientation property sets the layout orientation of the card's contents. By 
 
 To use MDCard in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired. You can then add the card to your app's user interface hierarchy, typically inside a container widget like a BoxLayout or GridLayout.
 
-#### MDlabel
+### MDlabel
 ```.kv
 MDLabel:
                 text: "Place"
@@ -241,7 +239,7 @@ To use MDLabel in your KivyMD app, you need to import it from the KivyMD library
 
 In this code, text is set to "Place", font_size is set to 40, size_hint is set to .6 for width and .05 for height, and pos_hint is set to center the label horizontally and vertically within its parent widget. These settings are specific to the example code and can be adjusted to suit the needs of your app.
 
-#### MDtextfield
+### MDtextfield
 ```.kv
 MDTextField:
             id: login_userid_input
@@ -259,7 +257,7 @@ Other properties include size_hint, which determines the size of the field relat
 
 Finally, required is a boolean property that determines whether the field is required to be filled in by the user. To use MDTextField in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired.
 
-#### MDChip
+### MDChip
 ```.kv
 MDChip:
                     text: "Room"
@@ -275,3 +273,172 @@ Other properties include size_hint, which determines the size of the chip relati
 In this code, on_chip_pressed and removes_marks_all_chips are methods defined in the parent widget that are called when the chip is pressed or its state changes, respectively. These methods can be used to update the state of the app or perform other actions based on the user's interaction with the chip.
 
 To use MDChip in your KivyMD app, you need to import it from the KivyMD library and create an instance of it, setting its properties as desired. You can then add the chip to your app's user interface hierarchy, typically inside a container widget like a BoxLayout or GridLayout.
+
+
+
+## Development using python
+
+### database worker
+```.py
+class database_worker:
+    def __init__(self, name):
+        self.connection = sqlite3.connect(name)
+        self.cursor = self.connection.cursor()
+
+    def search(self, query):
+        result = self.cursor.execute(query).fetchall()
+        return result
+
+    def run_save(self, query):
+        self.cursor.execute(query)
+        self.connection.commit()
+        return
+
+    def collect_output(self,query):
+        self.cursor.execute(query)
+        return self.cursor.fetchone()
+
+    def close(self):
+        self.connection.close()
+```
+This is a Python class named "database_worker" that encapsulates methods for performing basic database operations using SQLite.
+
+The constructor method "init" takes a parameter "name" which is the name of the SQLite database to be connected. It initializes the class variables "connection" and "cursor" to store the database connection and cursor objects respectively.
+The "search" method takes a parameter "query" which is a SQL query to be executed against the database. It uses the cursor object to execute the query and fetch all the results which are then returned.
+The "run_save" method takes a parameter "query" which is a SQL query to be executed against the database. It uses the cursor object to execute the query and then commits the changes made to the database.
+The "collect_output" method takes a parameter "query" which is a SQL query to be executed against the database. It uses the cursor object to execute the query and fetch the first result which is then returned.
+The "close" method is used to close the database connection.
+
+Overall, this code provides a basic interface to interact with an SQLite database and perform operations such as searching, saving, and retrieving data.
+
+
+### database worker
+```.py
+class database_worker:
+    def __init__(self, name):
+        self.connection = sqlite3.connect(name)
+        self.cursor = self.connection.cursor()
+
+    def search(self, query):
+        result = self.cursor.execute(query).fetchall()
+        return result
+
+    def run_save(self, query):
+        self.cursor.execute(query)
+        self.connection.commit()
+        return
+
+    def collect_output(self,query):
+        self.cursor.execute(query)
+        return self.cursor.fetchone()
+
+    def close(self):
+        self.connection.close()
+```
+
+### login system
+
+#### Validation
+```.py
+    def userid_empty(self):
+        input1 = self.ids.login_userid_input.text
+        if input1 == "":
+            self.ids.login_userid_input.helper_text_mode = "on_error"
+            self.ids.login_userid_input.helper_text = "Username is required"
+            self.ids.login_userid_input.required = True
+
+    def password_empty(self):
+        input2 = self.ids.login_password_input.text
+        if input2 == "":
+            self.ids.login_password_input.helper_text_mode = "on_error"
+            self.ids.login_password_input.helper_text = "password is required"
+            self.ids.login_password_input.required = True
+```
+This code defines two methods "userid_empty" and "password_empty" that are used to validate user inputs for a login screen in a GUI application.
+
+The "userid_empty" method checks if the input for the user ID is empty or not. If the input is empty, it sets the helper text mode of the login_userid_input field to "on_error" and displays an error message indicating that the username is required. It also sets the "required" attribute of the login_userid_input field to true, indicating that the user must enter a value in this field before they can proceed.
+The "password_empty" method checks exactly same things and show users a same things.
+
+Overall, these methods provide a basic input validation mechanism for ensuring that the user enters valid input for the login credentials. This helps to prevent errors and improve the user experience by providing clear feedback when inputs are missing or invalid.
+
+#### input(password) = hash(password)
+```.py
+    def try_login(self):
+        uname = self.ids.login_userid_input.text
+        passwd = self.ids.login_password_input.text
+        query = f"SELECT * from users WHERE username = '{uname}'"
+        db = database_worker("Food_Items.db")
+        result = db.search(query=query)
+        db.close()
+
+        input1 = self.ids.login_userid_input.text
+        input2 = self.ids.login_password_input.text
+        if input1 == "" and input2 == "":
+            self.ids.login_userid_input.helper_text_mode = "on_error"
+            self.ids.login_userid_input.helper_text = "Username or email is required"
+            self.ids.login_userid_input.required = True
+            self.ids.login_userid_input.error = True
+            self.ids.login_password_input.helper_text_mode = "on_error"
+            self.ids.login_password_input.helper_text = "password is required"
+            self.ids.login_password_input.required = True
+            self.ids.login_password_input.error = True
+
+        else:
+            if len(result) == 1:
+                id, email, hashed, uname = result[0]
+                self.user_id = id
+                if check_password(user_password=passwd, hashed_password=hashed):
+                    print("Login Successful")
+                    self.parent.current = "HomeScreen"
+                    self.ids.login_userid_input.text = ''
+                    self.ids.login_password_input.text = ''
+                    self.ids.login_userid_input.required = False
+                    self.ids.login_password_input.required = False
+                else:
+                    self.ids.login_password_input.helper_text_mode = "on_error"
+                    self.ids.login_password_input.helper_text = "Incorrect password"
+                    self.ids.login_password_input.required = True
+                    self.ids.login_password_input.error = True
+            else:
+                self.ids.login_userid_input.helper_text_mode = "on_error"
+                self.ids.login_userid_input.helper_text = "user doesn't exist"
+                self.ids.login_userid_input.required = True
+                self.ids.login_userid_input.error = True
+                self.ids.login_password_input.helper_text_mode = "on_error"
+                self.ids.login_password_input.helper_text = "fix the username first"
+                self.ids.login_password_input.required = True
+                self.ids.login_password_input.error = True
+```
+This code defines the method 'try_login', which is used to authenticate a user based on the login information entered in the GUI application.
+
+The method first retrieves the values of the username and password fields from the GUI and builds a query to search for matching user records in the database. The query is executed using the "database_worker" object used to search for records in the database and the results are stored in a variable named "result".
+
+If both the username and password fields are empty, an error message is displayed on the GUI indicating that these fields are required. If a user record is found in the database, the password entered by the user is compared with the hashed password retrieved from the database. If the passwords match, the user successfully logs in and the GUI is redirected to the home screen. If not, an error message is displayed indicating that the entered password is incorrect.
+
+If there is no user record in the database corresponding to the username entered, an error message is displayed indicating that the user does not exist and the user is asked to correct the username before retrying to log in.
+
+### Registration System
+```.py
+    def try_register(self):
+        uname = self.ids.uname_reg.text
+        email = self.ids.email_reg.text
+        passwd = self.ids.password_reg.text
+        passwd2 = self.ids.passwordcon_reg.text
+        email_pattern = r"[^@]+@[^@]+\.[^@]+"
+        db = database_worker("Food_Items.db")
+        query = f"""SELECT COUNT(*) FROM users WHERE username = '{uname}';"""
+        temp = db.collect_output(query)
+        print(temp)
+        temp = temp[0]
+```
+This code defines a method "try_register" that is used to register a new user in a GUI application.
+
+The method first retrieves the values of the username, email, password, and confirm password fields from the GUI. It then defines a regular expression pattern for email validation and creates a "database_worker" object to interact with the database.
+
+Next, a query is constructed to count the number of users with the same username as the one entered by the user. The query is executed using the "database_worker" object and the result is stored in a variable named "temp". The "temp" variable contains the count of user records with the same username, which is then printed to the console.
+
+Finally, the first element of the "temp" variable is extracted and stored in "temp" itself. 
+
+Additionally, I also have a validation in the registration methods to make it easier for users to use the application when they want to register to this app.
+
+
