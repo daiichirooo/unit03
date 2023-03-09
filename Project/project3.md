@@ -581,3 +581,102 @@ This code defines a method add_food that gets the input data for a new food item
             dialog.open()
 ```
 This code defines a function called delete() that handles the deletion of selected rows from a database. The function first checks if exactly one row is selected, and if so, it retrieves the data from the selected row and constructs a SQL query to delete the corresponding record from the database. The query is then executed and the GUI is updated to reflect the changes. If more than one row is selected, an error message is displayed to the user.
+
+
+#### change system
+```.py
+    def change_the_content(self):
+        checked = self.rows_checked
+        if len(checked) == 1:
+            rows_checked = self.rows_checked[0]
+            user_id = self.manager.get_screen("LoginScreen").user_id
+            # print(rows_checked)
+            column_index = rows_checked.index(str(self.column))
+            # print(column_index)
+            query = f"""select id from food_data 
+            WHERE user_id = {user_id} and 
+            item = "{rows_checked[0]}" and 
+            amount = "{rows_checked[1]}" and 
+            place = "{rows_checked[2]}" and 
+            expiration_date = "{rows_checked[3]}"
+            """
+            query = str(query)
+            # print(query)
+            db = database_worker("Food_Items.db")
+            temp_id = db.collect_output(query)
+            choice = ["item","amount","place","expiration_date"]
+            # print(choice[column_index])
+            # print(self.ids.list_change_input.text)
+            query2 = f"""update food_data set {choice[column_index]} = {self.ids.list_change_input.text} where  id = {temp_id[0]}"""
+            # print(query2)
+            db.run_save(query2)
+            db.close()
+            self.rows_checked.remove(rows_checked)
+            self.update()
+            print(self.data_table.get_row_checks())
+        else:
+            Logger.error("Please select only one item to edit")
+            dialog = MDDialog(
+                title="Warning",
+                text="Please select only one item to edit",
+                size_hint=(0.7, 0.3)
+            )
+            dialog.open()
+```
+
+The change_the_content() function updates the value of a selected cell in the data table. The function checks if only one cell is selected, and then retrieves the cell's information from the database using a SELECT query with the user ID and the cell values. It then determines which column was selected and updates the value in the corresponding row of the table using an UPDATE query. Finally, the function removes the cell's selection and updates the table. If more than one cell is selected, an error message is displayed.
+
+#### The list on the screen (how to show the database on the KyvyMD screen)
+```.py
+    def on_pre_enter(self, *args):
+        self.data_table = MDDataTable(
+            size_hint=(.675, .52),
+            pos_hint={"center_x": .389, "center_y": .5},
+            use_pagination=True,
+            check=True,
+            column_data=[("item", 70),
+                         ("amount", 40),
+                         ("place", 50),
+                         ("expiration date", 60)
+                         ]
+        )
+        # add the table to the screen
+        self.data_table.bind(on_row_press=self.row_pressed)
+        self.data_table.bind(on_check_press=self.check_pressed)
+        self.add_widget(self.data_table)
+        self.update()
+
+    def row_pressed(self,table,row):
+        print("a row was pressed", row.text)
+        self.column = row.text
+        row.md_bg_color = "#c56e33"
+
+    def check_pressed(self, table, current_row):
+        print("a check was pressed", current_row)
+        if  current_row not in self.rows_checked:
+            self.rows_checked.append(current_row)
+        else:
+            self.rows_checked.remove(current_row)
+        print(self.rows_checked)
+```
+This code defines a function on_pre_enter which creates an instance of MDDataTable and adds it to the screen. The MDDataTable is a table widget provided by the KivyMD library. The table has four columns, each with a header: "item", "amount", "place", and "expiration date". The table is set to use pagination and has a checkbox column enabled. The on_row_press and on_check_press events are bound to their respective callback functions row_pressed and check_pressed. Finally, the update function is called to populate the table with data from the database.
+
+#### update system
+```.py
+    def update(self, location="%"):
+        self.data_table.row_data.clear( )
+        user_id = self.manager.get_screen("LoginScreen").user_id
+        db = database_worker("food_items.db")
+        query = f"SELECT item,amount,place,expiration_date FROM food_data where user_id = {user_id} and place like '{location}'"
+        print(query)
+        data = db.search(query)
+        db.close()
+        if len(data)==0:
+            data = [["","", "", "", ""]]
+        for row in data:
+            if row not in self.data_table.row_data:
+                self.data_table.row_data.append(row)
+```
+This code defines a method called update that updates the data shown in a MDDataTable widget based on a specified location. It first clears the current data in the widget and gets the user_id from the LoginScreen using self.manager.get_screen. It then creates a database connection and runs a query to select all items that belong to the specified user and are located at the specified location. The method then iterates over the results and appends them to the row_data attribute of the MDDataTable widget. If there are no results, it adds a single empty row to the table.
+
+
