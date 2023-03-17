@@ -96,7 +96,7 @@ class quiz047(MDApp):
         self.root.ids["salary_label"].text = " JPY"
         self.root.ids.hash.text = "----"
 
-    def check_fraud(self):
+    def ci(self):
         x = database_worker("payments.db")
         query = "SELECT * from payments"
         result = x.search(query)
@@ -135,8 +135,9 @@ create = """CREATE TABLE if not exists payments(
             total int,
             hash text
     )"""
-test.check_fraud()
+test.ci()
 test.run()
+
 
 ```
 
